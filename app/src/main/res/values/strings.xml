@@ -374,4 +374,9 @@
     <string name="report_submitting">제보를 저장하고 있어요</string>
     <string name="report_complete_title">제보를 접수했어요</string>
     <string name="report_complete_message">현재 상태: %1$s</string>
+
+    <!-- Saved Places -->
+    <string name="saved_recents_title">최근 검색</string>
+    <string name="saved_favorites_title">즐겨찾기</string>
+    <string name="saved_clear_recents">최근 기록 지우기</string>
 </resources>

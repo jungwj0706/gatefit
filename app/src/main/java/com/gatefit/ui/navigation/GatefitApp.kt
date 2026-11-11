@@ -25,6 +25,7 @@ import com.gatefit.ui.feature.entrance.EntranceDetailScreen
 import com.gatefit.ui.feature.home.HomeScreen
 import com.gatefit.ui.feature.navigation.NavigationHandoffScreen
 import com.gatefit.ui.feature.report.ReportScreen
+import com.gatefit.ui.feature.saved.SavedPlacesScreen
 import com.gatefit.ui.feature.search.SearchScreen
 import com.gatefit.ui.feature.splash.SplashDestination
 import com.gatefit.ui.feature.splash.SplashScreen
@@ -127,6 +128,13 @@ private fun GatefitNavHost(navController: NavHostController) {
         composable(Routes.REPORT) { entry ->
             ReportScreen(
                 entranceId = entry.arguments?.getString(Routes.ARG_ENTRANCE_ID).orEmpty(),
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.SAVED_PLACES) { entry ->
+            SavedPlacesScreen(
+                kind = entry.arguments?.getString(Routes.ARG_KIND).orEmpty(),
+                onOpenFacility = { id -> navController.open(Routes.ANALYSIS, Routes.analysis(id)) },
                 onBack = { navController.popBackStack() },
             )
         }
