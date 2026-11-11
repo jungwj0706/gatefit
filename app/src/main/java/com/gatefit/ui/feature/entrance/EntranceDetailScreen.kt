@@ -5,9 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Navigation
@@ -21,6 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gatefit.R
+import com.gatefit.domain.model.CompatibilityStatus
+import com.gatefit.domain.model.DataFreshness
+import com.gatefit.domain.model.DataOrigin
 import com.gatefit.domain.model.DayType
 import com.gatefit.domain.model.VehicleEntrance
 import com.gatefit.domain.repository.EntranceWithFacility
@@ -93,7 +95,7 @@ private fun EntranceDetailBody(
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(GatefitTheme.dimens.itemSpacing),
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = GatefitTheme.dimens.sectionSpacing),
+        contentPadding = PaddingValues(bottom = GatefitTheme.dimens.sectionSpacing),
     ) {
         item { EntranceHeader(content.details, content.analysis.status) }
         item { LimitsCard(entrance) }
@@ -113,7 +115,7 @@ private fun EntranceDetailBody(
                     onClick = onReport,
                     modifier = Modifier.fillMaxWidth(),
                     icon = Icons.Filled.Flag,
-                    enabled = entrance.origin != com.gatefit.domain.model.DataOrigin.DEMO,
+                    enabled = entrance.origin != DataOrigin.DEMO,
                 )
             }
         }
@@ -121,7 +123,7 @@ private fun EntranceDetailBody(
 }
 
 @Composable
-private fun EntranceHeader(details: EntranceWithFacility, status: com.gatefit.domain.model.CompatibilityStatus) {
+private fun EntranceHeader(details: EntranceWithFacility, status: CompatibilityStatus) {
     val entrance = details.entrance
     SectionCard {
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -136,15 +138,8 @@ private fun EntranceHeader(details: EntranceWithFacility, status: com.gatefit.do
             LabeledValue(stringResource(R.string.entrance_class), stringResource(it.labelRes))
         }
         LabeledValue(stringResource(R.string.entrance_status), stringResource(entrance.status.labelRes))
-        LabeledValue(
-            stringResource(R.string.entrance_location),
-            if (entrance.hasCoordinates) {
-                "${Formatters.coordinate(entrance.latitude!!)}, ${Formatters.coordinate(entrance.longitude!!)}"
-            } else {
-                stringResource(R.string.value_not_provided)
-            },
-        )
-        if (entrance.origin == com.gatefit.domain.model.DataOrigin.DEMO) DemoBadge()
+        LabeledValue(stringResource(R.string.entrance_location), coordinateText(entrance))
+        if (entrance.origin == DataOrigin.DEMO) DemoBadge()
     }
 }
 
@@ -157,9 +152,7 @@ private fun LimitsCard(entrance: VehicleEntrance) {
         LabeledValue(stringResource(R.string.entrance_weight_limit), kgText(entrance.maxWeightKg))
         LabeledValue(
             stringResource(R.string.entrance_permitted_vehicles),
-            entrance.permittedVehicleTypes
-                ?.joinToString { stringResource(it.labelRes) }
-                ?: stringResource(R.string.value_not_provided),
+            permittedVehicleText(entrance),
         )
         entrance.restrictionNote?.takeIf { it.isNotBlank() }?.let {
             NoteText(stringResource(R.string.entrance_restriction_note, it))
@@ -194,10 +187,7 @@ private fun CompatibilityCard(content: EntranceDetailContent.Ready) {
 }
 
 @Composable
-private fun SourceCard(
-    entrance: VehicleEntrance,
-    freshness: com.gatefit.domain.model.DataFreshness,
-) {
+private fun SourceCard(entrance: VehicleEntrance, freshness: DataFreshness) {
     SectionCard(title = stringResource(R.string.entrance_source_title)) {
         TrustBadge(entrance.trustLevel, freshness)
         LabeledValue(
@@ -212,5 +202,24 @@ private fun SourceCard(
             LabeledValue(stringResource(R.string.entrance_source_updated_at), Formatters.date(it))
         }
         entrance.dataSource?.notes?.takeIf { it.isNotBlank() }?.let { NoteText(it) }
+    }
+}
+
+@Composable
+private fun permittedVehicleText(entrance: VehicleEntrance): String {
+    val types = entrance.permittedVehicleTypes ?: return stringResource(R.string.value_not_provided)
+    val labels = mutableListOf<String>()
+    for (type in types) labels += stringResource(type.labelRes)
+    return labels.joinToString()
+}
+
+@Composable
+private fun coordinateText(entrance: VehicleEntrance): String {
+    val latitude = entrance.latitude
+    val longitude = entrance.longitude
+    return if (latitude != null && longitude != null) {
+        "${Formatters.coordinate(latitude)}, ${Formatters.coordinate(longitude)}"
+    } else {
+        stringResource(R.string.value_not_provided)
     }
 }

@@ -9,10 +9,11 @@ import com.gatefit.domain.repository.NavigationRepository
 import com.gatefit.domain.usecase.GetEntranceDetailsUseCase
 import com.gatefit.domain.usecase.RequestEntranceNavigationUseCase
 import com.gatefit.domain.usecase.ResolveRouteTargetUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -31,6 +32,7 @@ data class NavigationHandoffUiState(
     val routeState: RouteRequestState = RouteRequestState.Idle,
 )
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class NavigationHandoffViewModel(
     private val entranceId: String,
     facilities: FacilityRepository,
@@ -40,9 +42,9 @@ class NavigationHandoffViewModel(
     private val resolveRouteTarget: ResolveRouteTargetUseCase,
 ) : ViewModel() {
 
-    private val destination = facilities.dataVersion.map {
+    private val destination = facilities.dataVersion.mapLatest {
         facilities.ensureSeeded()
-        val details = getEntranceDetails(entranceId) ?: return@map NavigationHandoffContent.NotFound
+        val details = getEntranceDetails(entranceId) ?: return@mapLatest NavigationHandoffContent.NotFound
         NavigationHandoffContent.Ready(
             facilityName = details.facility.name,
             entranceName = details.entrance.name,

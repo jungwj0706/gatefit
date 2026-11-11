@@ -10,10 +10,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.DirectionsCar
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -30,8 +29,8 @@ import com.gatefit.ui.components.NoteText
 import com.gatefit.ui.components.NumberField
 import com.gatefit.ui.components.PrimaryButton
 import com.gatefit.ui.components.SectionCard
-import com.gatefit.ui.components.SectionTitle
 import com.gatefit.ui.format.labelRes
+import com.gatefit.domain.usecase.ReportIssue
 import com.gatefit.ui.navigation.gatefitViewModel
 import com.gatefit.ui.components.LocalDrivingRestrictions
 import com.gatefit.ui.theme.GatefitTheme
@@ -51,16 +50,19 @@ fun ReportScreen(entranceId: String, onBack: () -> Unit) {
                 title = stringResource(R.string.driving_restricted_title),
                 message = stringResource(R.string.driving_restricted_message),
             )
-        } else if (state.delivery != null) {
-            ReportAccepted(state.delivery.labelRes, onBack)
         } else {
-            ReportFormBody(state, viewModel, onBack)
+            val delivery = state.delivery
+            if (delivery != null) {
+                ReportAccepted(delivery.labelRes, onBack)
+            } else {
+                ReportFormBody(state, viewModel)
+            }
         }
     }
 }
 
 @Composable
-private fun ReportFormBody(state: ReportUiState, viewModel: ReportViewModel, onBack: () -> Unit) {
+private fun ReportFormBody(state: ReportUiState, viewModel: ReportViewModel) {
     val form = state.form
     Column(
         modifier = Modifier
@@ -106,7 +108,7 @@ private fun ReportFormBody(state: ReportUiState, viewModel: ReportViewModel, onB
                         )
                     }
                 }
-                state.issueTextForDirection()?.let { NoteText(it, color = androidx.compose.material3.MaterialTheme.colorScheme.error) }
+                state.issueTextForDirection()?.let { NoteText(it, color = MaterialTheme.colorScheme.error) }
             }
         }
         GatefitTextField(
@@ -142,20 +144,20 @@ private fun ReportAccepted(deliveryLabelRes: Int, onBack: () -> Unit) {
 @Composable
 private fun ReportUiState.issueTextForHeight(): String? =
     issues.firstOrNull {
-        it == com.gatefit.domain.usecase.ReportIssue.PROPOSED_HEIGHT_REQUIRED ||
-            it == com.gatefit.domain.usecase.ReportIssue.PROPOSED_HEIGHT_OUT_OF_RANGE
+        it == ReportIssue.PROPOSED_HEIGHT_REQUIRED ||
+            it == ReportIssue.PROPOSED_HEIGHT_OUT_OF_RANGE
     }?.let { stringResource(it.labelRes) }
 
 @Composable
 private fun ReportUiState.issueTextForDirection(): String? =
-    issues.firstOrNull { it == com.gatefit.domain.usecase.ReportIssue.PROPOSED_DIRECTION_REQUIRED }
+    issues.firstOrNull { it == ReportIssue.PROPOSED_DIRECTION_REQUIRED }
         ?.let { stringResource(it.labelRes) }
 
 @Composable
 private fun ReportUiState.issueTextForDescription(): String? =
     issues.firstOrNull {
-        it == com.gatefit.domain.usecase.ReportIssue.DESCRIPTION_REQUIRED ||
-            it == com.gatefit.domain.usecase.ReportIssue.DESCRIPTION_TOO_LONG ||
-            it == com.gatefit.domain.usecase.ReportIssue.ENTRANCE_NOT_FOUND ||
-            it == com.gatefit.domain.usecase.ReportIssue.DEMO_ENTRANCE
+        it == ReportIssue.DESCRIPTION_REQUIRED ||
+            it == ReportIssue.DESCRIPTION_TOO_LONG ||
+            it == ReportIssue.ENTRANCE_NOT_FOUND ||
+            it == ReportIssue.DEMO_ENTRANCE
     }?.let { stringResource(it.labelRes) }
