@@ -18,7 +18,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.gatefit.app.AppContainer
+import com.gatefit.domain.model.FacilityCategory
 import com.gatefit.ui.components.LocalDrivingRestrictions
+import com.gatefit.ui.feature.analysis.AnalysisScreen
+import com.gatefit.ui.feature.home.HomeScreen
+import com.gatefit.ui.feature.search.SearchScreen
 import com.gatefit.ui.feature.splash.SplashDestination
 import com.gatefit.ui.feature.splash.SplashScreen
 import com.gatefit.ui.feature.vehicle.VehicleSetupScreen
@@ -68,20 +72,57 @@ private fun GatefitNavHost(navController: NavHostController) {
                 onSkip = { navController.enterHome() },
             )
         }
+        composable(Routes.HOME) {
+            HomeScreen(
+                onSearch = { category -> navController.open(Routes.SEARCH, Routes.search(category?.name)) },
+                onOpenFacility = { id -> navController.open(Routes.ANALYSIS, Routes.analysis(id)) },
+                onOpenVehicleSetup = {
+                    navController.open(Routes.VEHICLE_SETUP, Routes.vehicleSetup(onboarding = false))
+                },
+                onOpenSettings = { navController.open(Routes.SETTINGS, Routes.SETTINGS) },
+                onOpenSavedPlaces = { kind -> navController.open(Routes.SAVED_PLACES, Routes.savedPlaces(kind)) },
+            )
+        }
+        composable(
+            route = Routes.SEARCH,
+            arguments = listOf(navArgument(Routes.ARG_CATEGORY) { type = NavType.StringType; nullable = true }),
+        ) { entry ->
+            val category = entry.arguments?.getString(Routes.ARG_CATEGORY)
+                ?.let { name -> FacilityCategory.entries.firstOrNull { it.name == name } }
+            SearchScreen(
+                initialCategory = category,
+                onOpenFacility = { id -> navController.open(Routes.ANALYSIS, Routes.analysis(id)) },
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.ANALYSIS) { entry ->
+            AnalysisScreen(
+                facilityId = entry.arguments?.getString(Routes.ARG_FACILITY_ID).orEmpty(),
+                onOpenEntrance = { id -> navController.open(Routes.ENTRANCE_DETAIL, Routes.entranceDetail(id)) },
+                onNavigate = { id -> navController.open(Routes.NAVIGATION_HANDOFF, Routes.navigationHandoff(id)) },
+                onOpenVehicleSetup = {
+                    navController.open(Routes.VEHICLE_SETUP, Routes.vehicleSetup(onboarding = false))
+                },
+                onBack = { navController.popBackStack() },
+            )
+        }
     }
 }
 
 private fun NavHostController.leaveSplash(destination: SplashDestination) {
-    val (pattern, route) = when (destination) {
-        SplashDestination.VEHICLE_SETUP -> Routes.VEHICLE_SETUP to Routes.vehicleSetup(onboarding = true)
-        SplashDestination.HOME -> Routes.HOME to Routes.HOME
+    val route = when (destination) {
+        SplashDestination.VEHICLE_SETUP -> Routes.vehicleSetup(onboarding = true)
+        SplashDestination.HOME -> Routes.HOME
     }
-    // 화면이 아직 등록되지 않은 경로로는 이동하지 않음
-    if (graph.none { it.route == pattern }) return
     navigate(route) { popUpTo(Routes.SPLASH) { inclusive = true } }
 }
 
 private fun NavHostController.enterHome() {
-    if (graph.none { it.route == Routes.HOME }) return
     navigate(Routes.HOME) { popUpTo(graph.id) { inclusive = true } }
+}
+
+// 화면이 아직 등록되지 않은 경로로는 이동하지 않음
+private fun NavHostController.open(pattern: String, route: String) {
+    if (graph.none { it.route == pattern }) return
+    navigate(route) { launchSingleTop = true }
 }

@@ -66,6 +66,9 @@ data class VehicleProfile(
         // 서비스 내부의 보수적 판단 파라미터, 법적 안전 기준 아님
         const val DEFAULT_SAFETY_MARGIN_MM = 100
         const val MAX_SAFETY_MARGIN_MM = 500
+
+        // 차량 등록 전 분석용 프로필, 모든 제원이 비어 있어 조건 충족 판정 불가
+        val UNREGISTERED = VehicleProfile(id = "")
     }
 }
 

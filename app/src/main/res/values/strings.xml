@@ -256,4 +256,65 @@
     <string name="vehicle_summary_unconfirmed">확인되지 않은 제원이어서 분석 결과가 확인 필요로 표시돼요.</string>
     <string name="vehicle_save_and_start">저장하고 시작</string>
     <string name="vehicle_save_requires_height">차량 높이를 등록해야 저장할 수 있어요.</string>
+
+    <!-- 시설 요약 -->
+    <string name="facility_address_missing">주소 정보 없음</string>
+    <string name="facility_no_entrances">등록된 차량 출입구 정보 없음</string>
+    <string name="facility_entrance_count">등록된 차량 출입구 %1$d개</string>
+    <string name="facility_height_known">높이 제한 확인 %1$d개</string>
+    <string name="facility_height_known_unknown">높이 제한 확인 %1$d개 · 미확인 %2$d개</string>
+    <string name="facility_not_reverified">재검증 전 정보</string>
+    <string name="facility_reverified_count">최근 검증 %1$d개</string>
+    <string name="facility_status_closed">운영이 종료된 시설로 등록되어 있어요</string>
+    <string name="facility_status_construction">공사 중인 시설로 등록되어 있어요</string>
+    <string name="favorite_add">즐겨찾기에 추가</string>
+    <string name="favorite_remove">즐겨찾기에서 삭제</string>
+
+    <!-- Home -->
+    <string name="settings_title">설정</string>
+    <string name="home_search_title">방문할 시설 검색</string>
+    <string name="home_search_restricted">주행 중에는 시설 검색 입력이 제한돼요</string>
+    <string name="home_search_scope">서울 내 등록 시설 %1$s곳 · 차량 출입구 %2$s개</string>
+    <string name="home_favorites">즐겨찾기</string>
+    <string name="home_favorites_empty">즐겨찾기한 시설이 없어요.</string>
+    <string name="home_recents">최근 검색</string>
+    <string name="home_recents_empty">최근에 확인한 시설이 없어요.</string>
+    <string name="home_show_all">전체 보기</string>
+    <string name="home_register_vehicle">차량 등록</string>
+    <string name="home_edit_vehicle">차량·제원 설정</string>
+    <string name="home_vehicle_unregistered_note">차량 제원을 등록하면 출입구별 조건 분석을 받을 수 있어요.</string>
+
+    <!-- Facility Search -->
+    <string name="search_title">시설 검색</string>
+    <string name="search_field_label">시설명·주소·별칭</string>
+    <string name="search_clear">검색어 지우기</string>
+    <string name="search_loading">시설을 찾고 있어요.</string>
+    <string name="search_empty_title">등록된 시설을 찾지 못했어요</string>
+    <string name="search_empty_message">아직 등록되지 않은 시설일 수 있어요. 시설명이나 주소의 일부로 다시 검색해 보세요.</string>
+    <string name="search_result_count">검색 결과 %1$d곳</string>
+    <string name="search_result_truncated">상위 %1$d곳만 표시해요. 검색어를 더 입력해 주세요.</string>
+    <string name="search_scope_note">서울 내 등록 시설 %1$s곳에서 검색해요. 전국의 모든 시설이 등록되어 있지는 않아요.</string>
+
+    <!-- Entrance Analysis -->
+    <string name="analysis_title">출입구 분석</string>
+    <string name="analysis_loading">출입구 조건을 분석하고 있어요.</string>
+    <string name="analysis_not_found_title">시설 정보를 찾을 수 없어요</string>
+    <string name="analysis_not_found_message">삭제되었거나 더 이상 제공되지 않는 시설이에요.</string>
+    <string name="analysis_no_entrances_title">등록된 차량 출입구 정보가 없어요</string>
+    <string name="analysis_no_entrances_message">이 시설의 출입구 정보는 아직 제공되지 않아요. 시설에 직접 확인해 주세요.</string>
+    <string name="analysis_vehicle_basis">분석 기준 차량</string>
+    <string name="analysis_vehicle_missing">차량 높이가 등록되지 않아 높이 조건을 판단할 수 없어요.</string>
+    <string name="analysis_status_count">%1$s %2$d</string>
+    <string name="analysis_no_match_title">확인된 출입구 중 현재 차량의 조건을 충족하는 입구를 찾지 못했어요</string>
+    <string name="analysis_no_match_message">아래 사유를 확인하고, 시설 또는 주차장 운영사에 직접 확인해 주세요.</string>
+    <string name="analysis_no_match_vehicle_message">차량 제원이 확인되지 않아 조건 충족 여부를 판단할 수 없어요. 차량 제원을 먼저 확인해 주세요.</string>
+    <string name="analysis_more_reasons">확인할 항목 %1$d개 더 있음</string>
+    <string name="analysis_disclaimer">%1$s %2$s 기준, 등록된 정보로 분석한 결과예요. 조건 충족은 실제 통과를 보증하지 않으니 현장 표지를 꼭 확인해 주세요.</string>
+    <string name="entrance_height_limit">제한 높이</string>
+    <string name="entrance_height_margin">차량 높이 대비 여유</string>
+    <string name="entrance_detail_action">상세 정보</string>
+    <string name="entrance_navigate_action">목적지로 설정</string>
+    <string name="check_limit_value">제한 %1$s %2$s</string>
+    <string name="check_vehicle_value">차량 %1$s %2$s</string>
+    <string name="check_margin_value">여유 %1$s %2$s</string>
 </resources>
