@@ -21,7 +21,9 @@ import com.gatefit.app.AppContainer
 import com.gatefit.domain.model.FacilityCategory
 import com.gatefit.ui.components.LocalDrivingRestrictions
 import com.gatefit.ui.feature.analysis.AnalysisScreen
+import com.gatefit.ui.feature.entrance.EntranceDetailScreen
 import com.gatefit.ui.feature.home.HomeScreen
+import com.gatefit.ui.feature.navigation.NavigationHandoffScreen
 import com.gatefit.ui.feature.search.SearchScreen
 import com.gatefit.ui.feature.splash.SplashDestination
 import com.gatefit.ui.feature.splash.SplashScreen
@@ -103,6 +105,21 @@ private fun GatefitNavHost(navController: NavHostController) {
                 onOpenVehicleSetup = {
                     navController.open(Routes.VEHICLE_SETUP, Routes.vehicleSetup(onboarding = false))
                 },
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.ENTRANCE_DETAIL) { entry ->
+            val entranceId = entry.arguments?.getString(Routes.ARG_ENTRANCE_ID).orEmpty()
+            EntranceDetailScreen(
+                entranceId = entranceId,
+                onNavigate = { id -> navController.open(Routes.NAVIGATION_HANDOFF, Routes.navigationHandoff(id)) },
+                onReport = { id -> navController.open(Routes.REPORT, Routes.report(id)) },
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.NAVIGATION_HANDOFF) { entry ->
+            NavigationHandoffScreen(
+                entranceId = entry.arguments?.getString(Routes.ARG_ENTRANCE_ID).orEmpty(),
                 onBack = { navController.popBackStack() },
             )
         }

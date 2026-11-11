@@ -317,4 +317,48 @@
     <string name="check_limit_value">제한 %1$s %2$s</string>
     <string name="check_vehicle_value">차량 %1$s %2$s</string>
     <string name="check_margin_value">여유 %1$s %2$s</string>
+
+    <!-- Entrance Detail -->
+    <string name="entrance_detail_title">출입구 상세</string>
+    <string name="entrance_detail_loading">출입구 정보를 불러오고 있어요.</string>
+    <string name="entrance_detail_not_found_title">출입구 정보를 찾을 수 없어요</string>
+    <string name="entrance_detail_not_found_message">삭제되었거나 더 이상 제공되지 않는 출입구예요.</string>
+    <string name="entrance_direction">차량 출입 방향</string>
+    <string name="entrance_class">출입구 유형</string>
+    <string name="entrance_status">운영 상태</string>
+    <string name="entrance_location">출입구 좌표</string>
+    <string name="entrance_limits_title">차량 제한 조건</string>
+    <string name="entrance_width_limit">제한 너비</string>
+    <string name="entrance_length_limit">제한 길이</string>
+    <string name="entrance_weight_limit">제한 중량</string>
+    <string name="entrance_permitted_vehicles">허용 차량</string>
+    <string name="entrance_restriction_note">추가 조건: %1$s</string>
+    <string name="entrance_hours_title">출입 허용 시간</string>
+    <string name="entrance_hours_exception">예외 조건: %1$s</string>
+    <string name="entrance_compatibility_title">내 차량 기준 분석</string>
+    <string name="entrance_compatibility_disclaimer">%1$s %2$s 기준 분석 결과예요. 실제 진입 전 현장 표지를 확인해 주세요.</string>
+    <string name="entrance_source_title">정보 출처·검증</string>
+    <string name="entrance_source_name">정보 출처</string>
+    <string name="entrance_verified_at">마지막 검증일</string>
+    <string name="entrance_source_updated_at">원본 갱신일</string>
+    <string name="entrance_report_action">정보 오류 제보</string>
+
+    <!-- Navigation Handoff -->
+    <string name="navigation_title">내비게이션 안내</string>
+    <string name="navigation_loading">안내할 출입구를 확인하고 있어요.</string>
+    <string name="navigation_not_found_title">출입구 정보를 찾을 수 없어요</string>
+    <string name="navigation_not_found_message">출입구가 삭제되었거나 제공되지 않아요.</string>
+    <string name="navigation_destination_title">안내 목적지</string>
+    <string name="navigation_target_type">목적지 유형</string>
+    <string name="navigation_coordinates">목적지 좌표</string>
+    <string name="navigation_address">주소</string>
+    <string name="navigation_blocked_title">이 출입구로는 안내할 수 없어요</string>
+    <string name="navigation_request_note">Pleos 기본 내비게이션에 이 출입구를 목적지로 요청해요. 요청 후 실제 경로 탐색 완료 상태를 확인해 주세요.</string>
+    <string name="navigation_request_action">내비게이션에 요청</string>
+    <string name="navigation_pending_title">내비게이션 경로를 확인하고 있어요</string>
+    <string name="navigation_pending_message">경로가 실제로 설정될 때까지 기다려 주세요.</string>
+    <string name="navigation_cancel_action">요청 취소</string>
+    <string name="navigation_confirmed_title">내비게이션 경로가 설정됐어요</string>
+    <string name="navigation_confirmed_message">이후 안내는 Pleos 기본 내비게이션에서 계속돼요.</string>
+    <string name="navigation_failed_title">내비게이션 경로를 설정하지 못했어요</string>
 </resources>
