@@ -1,0 +1,37 @@
+{
+  "counts": {
+    "entrance_rows_in": 2273,
+    "entrance_status_ACTIVE": 2247,
+    "entrance_status_CLOSED": 15,
+    "entrance_status_UNKNOWN": 7,
+    "entrance_type_BIDIRECTIONAL": 1490,
+    "entrance_type_ENTRY": 394,
+    "entrance_type_EXIT": 385,
+    "entrances_dropped_duplicate_content": 4,
+    "entrances_out": 2269,
+    "entrances_with_any_hours": 1179,
+    "entrances_with_height": 864,
+    "facilities_dropped_marked_duplicate": 3,
+    "facilities_out": 3603,
+    "facilities_with_entrances": 1442,
+    "facility_rows_in": 3606,
+    "facility_status_CLOSED": 18,
+    "facility_status_UNKNOWN": 3585,
+    "heights_rejected": 2
+  },
+  "rejected": {
+    "heights": [
+      {
+        "record": "B0185_C001",
+        "raw": "50.5M"
+      },
+      {
+        "record": "B1570_C001",
+        "raw": "15.5M"
+      }
+    ],
+    "hours": [],
+    "coordinates": [],
+    "entrance_ids": []
+  }
+}

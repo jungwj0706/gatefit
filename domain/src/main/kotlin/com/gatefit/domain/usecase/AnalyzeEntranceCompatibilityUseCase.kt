@@ -16,6 +16,7 @@ import com.gatefit.domain.model.HeightLimitStructure
 import com.gatefit.domain.model.PermittedVehicleType
 import com.gatefit.domain.model.VehicleEntrance
 import com.gatefit.domain.model.VehicleProfile
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
@@ -56,7 +57,7 @@ class AnalyzeEntranceCompatibilityUseCase(
             checkDirection(entrance.direction),
             checkVehicleType(entrance.permittedVehicleTypes),
             checkEntranceStatus(entrance.status),
-            hoursEvaluator.evaluate(entrance.hours, localNow),
+            checkHours(entrance, localNow),
             trust.check,
         )
 
@@ -175,6 +176,16 @@ class AnalyzeEntranceCompatibilityUseCase(
             EntranceStatus.UNKNOWN -> CheckOutcome.UNKNOWN to CheckReason.ENTRANCE_STATUS_UNKNOWN
         }
         return ConstraintCheck(ConstraintType.ENTRANCE_STATUS, outcome, reason, required = true)
+    }
+
+    private fun checkHours(entrance: VehicleEntrance, localNow: LocalDateTime): ConstraintCheck {
+        val check = hoursEvaluator.evaluate(entrance.hours, localNow)
+        // 시간표상 허용 시간이어도 정기 휴무 등 예외 조건이 기록된 경우 확정 불가
+        return if (check.outcome == CheckOutcome.PASSED && entrance.hoursExceptionNote != null) {
+            check.copy(outcome = CheckOutcome.UNKNOWN, reason = CheckReason.HOURS_EXCEPTION_NOTED)
+        } else {
+            check
+        }
     }
 
     private fun unknown(

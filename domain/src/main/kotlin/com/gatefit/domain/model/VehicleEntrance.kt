@@ -56,6 +56,8 @@ data class VehicleEntrance(
     val maxLengthMm: Int? = null,
     val maxWeightKg: Int? = null,
     val hours: WeeklyHours = WeeklyHours(),
+    // 요일별 시간표로 표현되지 않는 휴무·예외 조건 원문
+    val hoursExceptionNote: String? = null,
     val restrictionNote: String? = null,
     val status: EntranceStatus = EntranceStatus.UNKNOWN,
     val dataSource: DataSource? = null,

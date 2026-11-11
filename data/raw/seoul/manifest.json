@@ -1,0 +1,22 @@
+{
+  "provider": "서울특별시 (서울 열린데이터광장)",
+  "license": "공공누리 제1유형 (출처표시, 상업적 이용 및 변경 가능)",
+  "datasets": {
+    "vehicle_entrances": {
+      "dataset_id": "OA-21700",
+      "title": "서울시 차량 출입구 정보",
+      "page_url": "https://data.seoul.go.kr/dataList/OA-21700/S/1/datasetView.do",
+      "file": "OA-21700_vehicle_entrances.zip",
+      "sha256": "4aec8ab5ceda2012d30b2ab9dc3910be7253e97d8ee25197c330e42e0ea34784",
+      "downloaded_at": "2026-11-11T04:35:44Z"
+    },
+    "facilities": {
+      "dataset_id": "OA-21698",
+      "title": "서울시 시설물 정보",
+      "page_url": "https://data.seoul.go.kr/dataList/OA-21698/S/1/datasetView.do",
+      "file": "OA-21698_facilities.zip",
+      "sha256": "feb8e80acb5776caf4d3579f1a2c6b70a3579453b153cd5b2dfe00dc059dbf05",
+      "downloaded_at": "2026-11-11T04:35:44Z"
+    }
+  }
+}

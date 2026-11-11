@@ -117,6 +117,19 @@ class AnalyzeEntranceCompatibilityUseCaseTest {
     }
 
     @Test
+    fun `recorded schedule exception keeps open hours from being confirmed`() {
+        val weekdayOpen = WeeklyHours(weekday = hours(range("09:00", "18:00")))
+        val entrance = verifiedEntrance(hours = weekdayOpen).copy(hoursExceptionNote = "월요일 휴무")
+
+        val inside = analyze(suvWithRoofBox(), entrance, WEDNESDAY_1PM)
+        val outside = analyze(suvWithRoofBox(), entrance, WEDNESDAY_1PM.withHour(20))
+
+        assertEquals(CompatibilityStatus.NEEDS_CONFIRMATION, inside.status)
+        assertEquals(CheckReason.HOURS_EXCEPTION_NOTED, inside.check(ConstraintType.OPERATING_HOURS)!!.reason)
+        assertEquals(CompatibilityStatus.CONDITION_MISMATCH, outside.status)
+    }
+
+    @Test
     fun `missing holiday hours on a holiday need confirmation`() {
         val engine = Fixtures.engine(FakeHolidayCalendar(holidays = setOf(WEDNESDAY_1PM.toLocalDate())))
         val weekdayOnly = WeeklyHours(weekday = OperatingHours.AllDay)
