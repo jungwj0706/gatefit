@@ -8,6 +8,15 @@ enum class VehicleLinkState {
     FAILED,
 }
 
+enum class VehicleLinkFailure {
+    SERVICE_NOT_INSTALLED,
+    CONNECTION_FAILED,
+    NO_RESPONSE,
+    PERMISSION_DENIED,
+    NO_DATA,
+    SDK_ERROR,
+}
+
 enum class CapabilitySupport { SUPPORTED, UNSUPPORTED, UNKNOWN }
 
 // 공개 CarInfo API가 제공하는 항목은 VIN·CRN 뿐이라 외부 제원 직접 조회 불가
@@ -26,6 +35,14 @@ data class VehicleIdentityHint(
 data class VehicleLinkStatus(
     val state: VehicleLinkState = VehicleLinkState.IDLE,
     val capabilities: VehicleCapabilities = VehicleCapabilities(),
-    val errorMessage: String? = null,
+    val failure: VehicleLinkFailure? = null,
     val demo: Boolean = false,
 )
+
+sealed interface VehicleInfoResult {
+    data class Available(val hint: VehicleIdentityHint) : VehicleInfoResult
+
+    // 차량이 해당 정보를 제공하지 않는 상태, 오류와 구분
+    data object Unsupported : VehicleInfoResult
+    data class Failed(val failure: VehicleLinkFailure) : VehicleInfoResult
+}

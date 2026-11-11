@@ -16,6 +16,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Pleos Vehicle SDK CarInfo 조회 권한 -->
+    <uses-permission android:name="pleos.car.permission.CAR_INFO" />
+
     <application
         android:name=".app.GatefitApplication"
         android:allowBackup="false"
