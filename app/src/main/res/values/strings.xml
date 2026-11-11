@@ -1,3 +1,211 @@
 <resources>
     <string name="app_name">GATEFIT</string>
+    <string name="app_tagline">내 차가 이용할 수 있는 입구까지</string>
+
+    <!-- 공통 -->
+    <string name="action_back">뒤로</string>
+    <string name="action_retry">다시 시도</string>
+    <string name="action_confirm">확인</string>
+    <string name="action_cancel">취소</string>
+    <string name="action_save">저장</string>
+    <string name="action_delete">삭제</string>
+    <string name="action_close">닫기</string>
+    <string name="value_unknown">미확인</string>
+    <string name="value_not_provided">정보 없음</string>
+    <string name="unit_mm">mm</string>
+    <string name="unit_kg">kg</string>
+    <string name="format_mm">%1$s mm</string>
+    <string name="format_kg">%1$s kg</string>
+    <string name="badge_demo">DEMO</string>
+    <string name="demo_notice">DEMO 데이터는 실제 시설·차량 정보가 아니에요.</string>
+    <string name="driving_banner">주행 중에는 검색·입력·제보 기능이 제한돼요.</string>
+    <string name="driving_banner_unknown">주행 상태를 확인할 수 없어 입력 기능을 제한하고 있어요.</string>
+    <string name="driving_restricted_title">주행 중에는 사용할 수 없어요</string>
+    <string name="driving_restricted_message">안전한 곳에 정차한 뒤 다시 이용해 주세요.</string>
+
+    <!-- 적합성 상태 -->
+    <string name="status_match">조건 충족</string>
+    <string name="status_needs_confirmation">확인 필요</string>
+    <string name="status_mismatch">조건 불일치</string>
+
+    <!-- 시설 카테고리 -->
+    <string name="category_all">전체</string>
+    <string name="category_hospital">병원</string>
+    <string name="category_shopping">백화점·쇼핑몰</string>
+    <string name="category_hotel">호텔</string>
+    <string name="category_public_office">공공기관</string>
+    <string name="category_culture">문화·대형 시설</string>
+    <string name="category_parking">주차장</string>
+    <string name="category_park">공원</string>
+    <string name="category_other">기타</string>
+
+    <!-- 데이터 신뢰도 -->
+    <string name="trust_verified_official">공식 확인</string>
+    <string name="trust_verified_field">현장 확인</string>
+    <string name="trust_public_baseline">공공데이터</string>
+    <string name="trust_community">사용자 제보</string>
+    <string name="trust_unknown">출처 미확인</string>
+    <string name="freshness_fresh">최근 확인됨</string>
+    <string name="freshness_needs_recheck">재확인 필요</string>
+    <string name="freshness_stale_baseline">재검증 전 공공데이터</string>
+    <string name="freshness_untrusted">검증되지 않음</string>
+
+    <!-- 분석 항목 -->
+    <string name="constraint_height">높이</string>
+    <string name="constraint_width">너비</string>
+    <string name="constraint_length">길이</string>
+    <string name="constraint_weight">중량</string>
+    <string name="constraint_direction">출입 방향</string>
+    <string name="constraint_hours">출입 시간</string>
+    <string name="constraint_vehicle_type">허용 차량</string>
+    <string name="constraint_entrance_status">운영 상태</string>
+    <string name="constraint_data_trust">정보 신뢰도</string>
+
+    <!-- 분석 사유 -->
+    <string name="reason_within_limit">제한 이내</string>
+    <string name="reason_exceeds_limit">제한 초과</string>
+    <string name="reason_margin_insufficient">안전 여유 부족</string>
+    <string name="reason_vehicle_value_missing">차량 제원 미등록</string>
+    <string name="reason_vehicle_value_unconfirmed">차량 제원 미확인</string>
+    <string name="reason_limit_not_provided">제한 정보 없음</string>
+    <string name="reason_height_structure_not_installed">높이 제한 시설 없음으로 등록됨</string>
+    <string name="reason_direction_entry">입구</string>
+    <string name="reason_direction_bidirectional">입구·출구 겸용</string>
+    <string name="reason_direction_exit_only">출구 전용</string>
+    <string name="reason_direction_unknown">입구·출구 구분 미확인</string>
+    <string name="reason_hours_open">현재 출입 가능 시간</string>
+    <string name="reason_hours_all_day">24시간 운영</string>
+    <string name="reason_hours_outside">현재 출입 시간이 아님</string>
+    <string name="reason_hours_closed_day">오늘 운영하지 않음</string>
+    <string name="reason_hours_not_provided">출입 시간 정보 없음</string>
+    <string name="reason_holiday_hours_not_provided">공휴일 출입 시간 정보 없음</string>
+    <string name="reason_holiday_status_unknown">오늘의 공휴일 여부 미확인</string>
+    <string name="reason_hours_exception_noted">예외 운영 조건 있음</string>
+    <string name="reason_vehicle_type_permitted">일반 차량 출입 가능</string>
+    <string name="reason_vehicle_type_not_permitted">일반 차량 출입 불가</string>
+    <string name="reason_vehicle_type_not_provided">허용 차량 정보 없음</string>
+    <string name="reason_entrance_active">운영 중</string>
+    <string name="reason_entrance_closed">폐쇄됨</string>
+    <string name="reason_entrance_status_unknown">운영 상태 미확인</string>
+    <string name="reason_trust_fresh">최근 검증된 정보</string>
+    <string name="reason_trust_stale">검증 후 오래된 정보</string>
+    <string name="reason_trust_date_missing">검증일 미기록</string>
+    <string name="reason_trust_baseline">재검증되지 않은 공공데이터</string>
+    <string name="reason_trust_community">검증 전 사용자 제보</string>
+    <string name="reason_trust_unknown">출처를 알 수 없는 정보</string>
+
+    <!-- 출입구 속성 -->
+    <string name="direction_entry">입구</string>
+    <string name="direction_exit">출구</string>
+    <string name="direction_bidirectional">입구·출구 겸용</string>
+    <string name="direction_unknown">구분 미확인</string>
+    <string name="entrance_class_main">주 출입구</string>
+    <string name="entrance_class_sub">부 출입구</string>
+    <string name="entrance_class_complex">복합 출입구</string>
+    <string name="entrance_class_resident">거주자 전용</string>
+    <string name="entrance_class_ground">지상</string>
+    <string name="entrance_class_underground">지하</string>
+    <string name="entrance_class_other">기타</string>
+    <string name="entrance_status_active">운영 중</string>
+    <string name="entrance_status_closed">폐쇄</string>
+    <string name="entrance_status_unknown">미확인</string>
+    <string name="height_structure_installed">설치됨</string>
+    <string name="height_structure_not_installed">없음으로 등록됨</string>
+    <string name="height_structure_unknown">미확인</string>
+    <string name="vehicle_type_general">일반 차량</string>
+    <string name="vehicle_type_resident">거주자 차량</string>
+    <string name="vehicle_type_emergency">긴급 차량</string>
+    <string name="vehicle_type_service">업무 차량</string>
+    <string name="route_target_entrance">차량 출입구 좌표</string>
+    <string name="route_target_road">도로 연결 지점</string>
+    <string name="route_target_centroid">시설 대표 좌표</string>
+    <string name="day_weekday">평일</string>
+    <string name="day_saturday">토요일</string>
+    <string name="day_sunday">일요일</string>
+    <string name="day_holiday">공휴일</string>
+    <string name="hours_all_day">24시간</string>
+    <string name="hours_closed">운영 안 함</string>
+
+    <!-- 차량 프로필 -->
+    <string name="accessory_roof_box">루프박스</string>
+    <string name="accessory_roof_carrier">루프 캐리어</string>
+    <string name="accessory_rooftop_tent">루프탑 텐트</string>
+    <string name="accessory_bike_carrier">자전거 캐리어</string>
+    <string name="accessory_extra_cargo">추가 적재 장치</string>
+    <string name="accessory_other">기타 장착물</string>
+    <string name="spec_confidence_sdk">차량에서 확인</string>
+    <string name="spec_confidence_manufacturer">제조사 제원</string>
+    <string name="spec_confidence_user_confirmed">직접 확인</string>
+    <string name="spec_confidence_user_estimated">추정값</string>
+    <string name="spec_confidence_unknown">미확인</string>
+    <string name="height_basis_measured">직접 측정한 전체 높이</string>
+    <string name="height_basis_factory">기본 높이 + 장착물</string>
+    <string name="height_basis_unavailable">높이 미등록</string>
+    <string name="field_height">차량 높이</string>
+    <string name="field_width">차량 너비</string>
+    <string name="field_length">차량 길이</string>
+    <string name="field_weight">차량 중량</string>
+    <string name="field_measured_height">직접 측정한 전체 높이</string>
+    <string name="field_height_correction">높이 보정값</string>
+    <string name="field_safety_margin">안전 여유값</string>
+    <string name="field_accessory_height">장착물 추가 높이</string>
+    <string name="field_accessory_width">장착물 추가 너비</string>
+    <string name="field_accessory_length">장착물 추가 길이</string>
+    <string name="field_range_error">%1$s: %2$s ~ %3$s 범위로 입력해 주세요.</string>
+
+    <!-- 차량 SDK 연결 -->
+    <string name="vehicle_link_connecting">차량 정보 연결 중</string>
+    <string name="vehicle_link_connected">차량 연결됨</string>
+    <string name="vehicle_link_connected_demo">개발용 Mock 차량 연결됨</string>
+    <string name="vehicle_link_idle">차량 연결 대기</string>
+    <string name="vehicle_failure_service_missing">차량 서비스를 찾을 수 없어요</string>
+    <string name="vehicle_failure_connection">차량 서비스에 연결하지 못했어요</string>
+    <string name="vehicle_failure_no_response">차량 서비스가 응답하지 않아요</string>
+    <string name="vehicle_failure_permission">차량 정보 접근 권한이 없어요</string>
+    <string name="vehicle_failure_no_data">차량에서 받은 정보가 없어요</string>
+    <string name="vehicle_failure_sdk_error">차량 정보 조회 중 오류가 발생했어요</string>
+    <string name="vehicle_manual_fallback">차량 제원은 직접 등록해서 이용할 수 있어요.</string>
+
+    <!-- 내비게이션 -->
+    <string name="route_block_coordinates_missing">출입구 좌표가 등록되지 않아 안내할 수 없어요.</string>
+    <string name="route_block_coordinates_invalid">출입구 좌표가 올바르지 않아 안내할 수 없어요.</string>
+    <string name="route_block_centroid">시설 대표 좌표만 등록되어 있어 출입구로 안내할 수 없어요.</string>
+    <string name="route_block_demo">DEMO 데이터는 실제 위치가 아니어서 안내할 수 없어요.</string>
+    <string name="route_block_closed">폐쇄된 출입구로는 안내할 수 없어요.</string>
+    <string name="route_block_exit_only">출구 전용이어서 목적지로 설정할 수 없어요.</string>
+    <string name="route_failure_service_missing">내비게이션 서비스를 찾을 수 없어요.</string>
+    <string name="route_failure_connection">내비게이션에 연결하지 못했어요. 다시 시도해 주세요.</string>
+    <string name="route_failure_permission">내비게이션 경로 설정 권한이 없어요.</string>
+    <string name="route_failure_rejected">내비게이션이 요청을 받지 못했어요. 다시 시도해 주세요.</string>
+    <string name="route_failure_search">경로를 탐색하지 못했어요. 출입구 좌표를 확인한 뒤 다시 시도해 주세요.</string>
+    <string name="route_failure_too_far">탐색 가능한 거리를 넘는 목적지예요.</string>
+    <string name="route_failure_too_short">현재 위치와 목적지가 너무 가까워요.</string>
+    <string name="route_failure_low_battery">배터리가 부족해 경로를 설정할 수 없어요.</string>
+    <string name="route_failure_no_response">내비게이션의 응답을 받지 못했어요. 내비게이션 화면에서 직접 확인해 주세요.</string>
+    <string name="route_failure_cancelled">내비게이션에서 경로 설정이 취소됐어요.</string>
+
+    <!-- 제보 -->
+    <string name="report_type_wrong_location">입구 위치가 달라요</string>
+    <string name="report_type_closed">입구가 폐쇄됐어요</string>
+    <string name="report_type_height">제한 높이가 달라요</string>
+    <string name="report_type_direction">입구·출구 구분이 달라요</string>
+    <string name="report_type_hours">운영 시간이 달라요</string>
+    <string name="report_type_restriction">출입 제한 조건이 달라요</string>
+    <string name="report_type_other">기타</string>
+    <string name="report_delivery_queued">전송 대기</string>
+    <string name="report_delivery_sent">접수됨 · 검토 대기</string>
+    <string name="report_delivery_failed">전송 실패 · 재시도 예정</string>
+    <string name="report_delivery_rejected">접수되지 않음</string>
+    <string name="report_issue_not_found">출입구 정보를 찾을 수 없어요.</string>
+    <string name="report_issue_demo">DEMO 출입구는 제보할 수 없어요.</string>
+    <string name="report_issue_too_long">설명은 500자 이내로 입력해 주세요.</string>
+    <string name="report_issue_description_required">내용을 입력해 주세요.</string>
+    <string name="report_issue_height_required">확인한 제한 높이를 입력해 주세요.</string>
+    <string name="report_issue_height_range">제한 높이는 1,000 ~ 6,000 mm 범위로 입력해 주세요.</string>
+    <string name="report_issue_direction_required">확인한 입구·출구 구분을 선택해 주세요.</string>
+
+    <!-- Splash -->
+    <string name="splash_preparing_data">출입구 데이터 준비 중</string>
+    <string name="splash_data_ready">출입구 데이터 준비 완료</string>
+    <string name="splash_data_failed">출입구 데이터를 준비하지 못했어요.</string>
 </resources>

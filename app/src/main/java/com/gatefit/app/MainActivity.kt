@@ -4,28 +4,40 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import com.gatefit.ui.navigation.GatefitApp
+import com.gatefit.ui.theme.GatefitTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val container: AppContainer
+        get() = (application as GatefitApplication).container
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MaterialTheme(colorScheme = darkColorScheme()) {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Text(text = "GATEFIT", style = MaterialTheme.typography.displayMedium)
-                    }
-                }
+            GatefitTheme {
+                GatefitApp(container)
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        container.drivingRestrictionRepository.start()
+    }
+
+    override fun onStop() {
+        container.drivingRestrictionRepository.stop()
+        super.onStop()
+    }
+
+    // 화면 회전 등 재생성이 아닌 실제 종료일 때만 SDK 연결 해제
+    override fun onDestroy() {
+        if (isFinishing) {
+            container.navigationRepository.release()
+            container.vehicleInfoRepository.disconnect()
+        }
+        super.onDestroy()
     }
 }
