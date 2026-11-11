@@ -27,6 +27,8 @@ import com.gatefit.ui.feature.navigation.NavigationHandoffScreen
 import com.gatefit.ui.feature.report.ReportScreen
 import com.gatefit.ui.feature.saved.SavedPlacesScreen
 import com.gatefit.ui.feature.search.SearchScreen
+import com.gatefit.ui.feature.settings.DataPolicyScreen
+import com.gatefit.ui.feature.settings.SettingsScreen
 import com.gatefit.ui.feature.splash.SplashDestination
 import com.gatefit.ui.feature.splash.SplashScreen
 import com.gatefit.ui.feature.vehicle.VehicleSetupScreen
@@ -137,6 +139,24 @@ private fun GatefitNavHost(navController: NavHostController) {
                 onOpenFacility = { id -> navController.open(Routes.ANALYSIS, Routes.analysis(id)) },
                 onBack = { navController.popBackStack() },
             )
+        }
+        composable(Routes.SETTINGS) {
+            SettingsScreen(
+                onOpenVehicle = {
+                    navController.open(Routes.VEHICLE_SETUP, Routes.vehicleSetup(onboarding = false))
+                },
+                onOpenRecents = {
+                    navController.open(Routes.SAVED_PLACES, Routes.savedPlaces(Routes.KIND_RECENT))
+                },
+                onOpenFavorites = {
+                    navController.open(Routes.SAVED_PLACES, Routes.savedPlaces(Routes.KIND_FAVORITE))
+                },
+                onOpenDataPolicy = { navController.open(Routes.DATA_POLICY, Routes.DATA_POLICY) },
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.DATA_POLICY) {
+            DataPolicyScreen(onBack = { navController.popBackStack() })
         }
     }
 }

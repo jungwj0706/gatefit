@@ -379,4 +379,20 @@
     <string name="saved_recents_title">최근 검색</string>
     <string name="saved_favorites_title">즐겨찾기</string>
     <string name="saved_clear_recents">최근 기록 지우기</string>
+
+    <!-- Settings and Data Policy -->
+    <string name="settings_vehicle">차량·제원 설정</string>
+    <string name="settings_data_title">데이터 표시</string>
+    <string name="settings_demo_title">DEMO 데이터 표시</string>
+    <string name="settings_demo_note">실제 시설 정보와 구분된 시연용 데이터를 함께 표시해요.</string>
+    <string name="settings_data_policy">데이터 정책</string>
+    <string name="data_policy_title">데이터 정책</string>
+    <string name="data_policy_vehicle_title">차량 정보</string>
+    <string name="data_policy_vehicle_body">차량 SDK에서 확인한 제조사·연식 정보는 모델 제안에만 사용하며 저장하거나 전송하지 않아요. 차량 치수와 장착물 정보는 이 기기에 저장돼 분석에만 사용돼요.</string>
+    <string name="data_policy_entrance_title">출입구 정보</string>
+    <string name="data_policy_entrance_body">출입구 정보는 출처, 검증일, 신뢰도를 함께 표시해요. 오래되었거나 확인되지 않은 정보는 조건 충족으로 표시하지 않아요.</string>
+    <string name="data_policy_report_title">오류 제보</string>
+    <string name="data_policy_report_body">제보에는 출입구 식별 정보와 사용자가 입력한 수정 내용만 포함돼요. 차량 VIN, 현재 위치, 개인 식별 정보는 수집하지 않아요.</string>
+    <string name="data_policy_safety_title">안전한 사용</string>
+    <string name="data_policy_safety_body">조건 충족은 실제 진입 가능이나 안전을 보장하지 않아요. 주행 중에는 검색·입력·제보를 제한하며, 현장 표지와 운영사 안내를 우선해 주세요.</string>
 </resources>
