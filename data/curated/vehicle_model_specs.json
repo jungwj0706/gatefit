@@ -1,0 +1,106 @@
+{
+  "manufacturer": "현대자동차",
+  "source_verified_at": "2026-11-11",
+  "catalogs": [
+    {
+      "model_name": "아반떼",
+      "source_name": "현대자동차 공식 카탈로그 (아반떼)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/avante-catalog.pdf",
+      "specs": [
+        { "trim_name": null, "length_mm": 4710, "width_mm": 1825, "height_mm": 1420 }
+      ]
+    },
+    {
+      "model_name": "쏘나타 디 엣지",
+      "source_name": "현대자동차 공식 카탈로그 (쏘나타 디 엣지)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/sonata-the-edge-catalog.pdf",
+      "specs": [
+        { "trim_name": null, "length_mm": 4910, "width_mm": 1860, "height_mm": 1445 }
+      ]
+    },
+    {
+      "model_name": "그랜저",
+      "source_name": "현대자동차 공식 카탈로그 (그랜저)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/grandeur-catalog.pdf",
+      "specs": [
+        { "trim_name": null, "length_mm": 5035, "width_mm": 1880, "height_mm": 1460 }
+      ]
+    },
+    {
+      "model_name": "코나",
+      "source_name": "현대자동차 공식 카탈로그 (코나)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/kona-catalog.pdf",
+      "specs": [
+        { "trim_name": "17·18인치 휠 (루프랙 미적용)", "length_mm": 4350, "width_mm": 1825, "height_mm": 1580 },
+        { "trim_name": "17·18인치 휠 (루프랙 적용)", "length_mm": 4350, "width_mm": 1825, "height_mm": 1585 },
+        { "trim_name": "19인치 휠 (루프랙 미적용)", "length_mm": 4350, "width_mm": 1825, "height_mm": 1585 },
+        { "trim_name": "19인치 휠 (루프랙 적용)", "length_mm": 4350, "width_mm": 1825, "height_mm": 1590 }
+      ]
+    },
+    {
+      "model_name": "투싼",
+      "source_name": "현대자동차 공식 카탈로그 (투싼)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/tucson-catalog.pdf",
+      "specs": [
+        { "trim_name": "N Line 제외", "length_mm": 4640, "width_mm": 1865, "height_mm": 1665 }
+      ]
+    },
+    {
+      "model_name": "싼타페",
+      "source_name": "현대자동차 공식 카탈로그 (싼타페)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/santafe-catalog.pdf",
+      "specs": [
+        { "trim_name": "루프랙 미적용", "length_mm": 4830, "width_mm": 1900, "height_mm": 1720 },
+        { "trim_name": "루프랙 적용", "length_mm": 4830, "width_mm": 1900, "height_mm": 1770 },
+        { "trim_name": "캘리그래피 (루프랙 미적용)", "length_mm": 4830, "width_mm": 1900, "height_mm": 1730 },
+        { "trim_name": "캘리그래피 (루프랙 적용)", "length_mm": 4830, "width_mm": 1900, "height_mm": 1780 }
+      ]
+    },
+    {
+      "model_name": "팰리세이드",
+      "source_name": "현대자동차 공식 카탈로그 (팰리세이드)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/palisade-catalog.pdf",
+      "specs": [
+        { "trim_name": "기본 (루프랙 포함 전고, 하이루프 제외)", "length_mm": 5060, "width_mm": 1980, "height_mm": 1805 },
+        { "trim_name": "캘리그래피 (루프랙 포함 전고, 하이루프 제외)", "length_mm": 5065, "width_mm": 1980, "height_mm": 1805 },
+        { "trim_name": "XRT (루프랙 포함 전고, 하이루프 제외)", "length_mm": 5095, "width_mm": 1980, "height_mm": 1805 }
+      ]
+    },
+    {
+      "model_name": "아이오닉 5",
+      "source_name": "현대자동차 공식 카탈로그 (아이오닉 5)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/ioniq5-catalog.pdf",
+      "specs": [
+        { "trim_name": null, "length_mm": 4655, "width_mm": 1890, "height_mm": 1605 }
+      ]
+    },
+    {
+      "model_name": "아이오닉 9",
+      "source_name": "현대자동차 공식 카탈로그 (아이오닉 9)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/ioniq9-catalog.pdf",
+      "specs": [
+        { "trim_name": null, "length_mm": 5060, "width_mm": 1980, "height_mm": 1790 }
+      ]
+    },
+    {
+      "model_name": "스타리아",
+      "source_name": "현대자동차 공식 카탈로그 (스타리아)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/staria-catalog.pdf",
+      "specs": [
+        { "trim_name": "투어러", "length_mm": 5255, "width_mm": 1995, "height_mm": 1990 },
+        { "trim_name": "카고", "length_mm": 5255, "width_mm": 1995, "height_mm": 2000 },
+        { "trim_name": "킨더", "length_mm": 5255, "width_mm": 1995, "height_mm": 2120 }
+      ]
+    },
+    {
+      "model_name": "스타리아 라운지",
+      "source_name": "현대자동차 공식 카탈로그 (스타리아 라운지)",
+      "source_url": "https://www.hyundai.com/contents/repn-car/catalog/staria-lounge-catalog.pdf",
+      "specs": [
+        { "trim_name": "기본 (리무진·캠퍼 제외)", "length_mm": 5255, "width_mm": 1995, "height_mm": 1990 },
+        { "trim_name": "캠퍼", "length_mm": 5255, "width_mm": 1995, "height_mm": 2095 },
+        { "trim_name": "리무진", "length_mm": 5255, "width_mm": 1995, "height_mm": 2200 }
+      ]
+    }
+  ]
+}

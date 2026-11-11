@@ -12,6 +12,12 @@ Python 3.10 이상 표준 라이브러리만 사용합니다.
     ├─ supabase/seed/*.sql                              서버 데이터베이스 시드
     ├─ app/src/main/assets/baseline/seoul_baseline.json 앱 내장 오프라인 스냅샷
     └─ data/processed/seoul_baseline_report.json        정제 통계와 제외된 값
+
+차량 제원 (data/curated/vehicle_model_specs.json, 공식 카탈로그에서 확인한 값)
+    ↓  출처·치수 범위·중복 검사 → 고정 ID 부여
+생성물
+    ├─ supabase/seed/04_vehicle_model_specs.sql            서버 데이터베이스 시드
+    └─ app/src/main/assets/catalog/vehicle_model_specs.json 앱 내장 제원 목록
 ```
 
 ## 실행
@@ -68,7 +74,17 @@ python.org 배포판 macOS Python에서 인증서 오류가 나면 `SSL_CERT_FIL
 - 검증 시각 (`verified_at`), 검증 완료 등급
 - 출입구 좌표가 없을 때의 대체 좌표 (시설 대표 좌표로 대체하지 않음)
 
+## 차량 제원
+
+`data/curated/vehicle_model_specs.json`은 사람이 공식 자료를 보고 직접 관리하는 목록입니다.
+제원을 추가하거나 고칠 때는 이 파일만 수정하고 `build_baseline.py`를 다시 실행합니다.
+
+- 출처 이름과 `https` 출처 URL, 확인 날짜가 없는 제원은 빌드가 실패합니다.
+- 전고·전폭·전장이 데이터베이스 제약 범위를 벗어나면 빌드가 실패합니다. (cm 단위 오입력 방지)
+- 같은 차종·연식·트림이 두 번 들어가면 빌드가 실패합니다.
+
 ## 재현성
 
 레코드 ID는 원본 ID에서 UUIDv5로 만들기 때문에 다시 실행해도 같은 결과가 나옵니다.
-시드는 `on conflict (id) do nothing`으로 적용되어, 운영 중 검증·수정된 레코드를 덮어쓰지 않습니다.
+시설·출입구 시드는 `on conflict (id) do nothing`으로 적용되어, 운영 중 검증·수정된 레코드를 덮어쓰지 않습니다.
+차량 제원 시드는 목록 파일이 기준이므로 같은 ID의 행을 목록 내용으로 갱신합니다.

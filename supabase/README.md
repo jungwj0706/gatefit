@@ -6,7 +6,7 @@ GATEFIT의 서버 데이터베이스(PostgreSQL) 정의입니다.
 supabase/
 ├── config.toml        Supabase CLI 설정 (시드 경로)
 ├── migrations/        스키마, 제약, RLS 정책
-├── seed/              공공데이터 기준 시드 (tools/data-pipeline 생성물, 직접 수정 금지)
+├── seed/              공공데이터 기준 시드와 차량 제원 시드 (tools/data-pipeline 생성물, 직접 수정 금지)
 └── tests/             스키마·RLS 검증 스크립트
 ```
 
@@ -25,6 +25,7 @@ supabase/
 - 앱에는 `anon` 키만 들어가며, `service_role` 키는 앱에 넣지 않습니다.
 - 제보는 항상 `PENDING` 상태로 등록되고, 공식 데이터를 자동으로 바꾸지 않습니다.
 - 검증 완료 등급(`VERIFIED_OFFICIAL`, `VERIFIED_FIELD`)은 검증 시각과 출처가 없으면 제약으로 거부됩니다.
+- 앱이 서버에서 내려받는 것은 시설·출입구·출처이며, 차량 제원은 같은 목록에서 만든 앱 내장 파일을 사용합니다.
 
 기획서의 테이블 정의에서 달라진 점은 다음과 같습니다.
 

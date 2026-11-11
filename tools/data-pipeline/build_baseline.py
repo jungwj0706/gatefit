@@ -7,12 +7,16 @@ from pathlib import Path
 
 from gatefit_pipeline import emit, transform
 from gatefit_pipeline.dbf import read_table_from_zip
+from gatefit_pipeline.vehicle_specs import build_vehicle_specs
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = REPO_ROOT / "data" / "raw" / "seoul"
 REPORT_PATH = REPO_ROOT / "data" / "processed" / "seoul_baseline_report.json"
+VEHICLE_SPECS_PATH = REPO_ROOT / "data" / "curated" / "vehicle_model_specs.json"
 SEED_DIR = REPO_ROOT / "supabase" / "seed"
-SNAPSHOT_PATH = REPO_ROOT / "app" / "src" / "main" / "assets" / "baseline" / "seoul_baseline.json"
+ASSET_DIR = REPO_ROOT / "app" / "src" / "main" / "assets"
+SNAPSHOT_PATH = ASSET_DIR / "baseline" / "seoul_baseline.json"
+SPEC_CATALOG_PATH = ASSET_DIR / "catalog" / "vehicle_model_specs.json"
 
 GENERATED_NOTICE = "tools/data-pipeline/build_baseline.py 생성 파일, 직접 수정 금지"
 
@@ -52,6 +56,7 @@ def main():
     facility_rows = read_table_from_zip(RAW_DIR / datasets["facilities"]["file"], "sisulSpfc")
     entrance_rows = read_table_from_zip(RAW_DIR / datasets["vehicle_entrances"]["file"], "entrcId")
     dataset, report = transform.build_dataset(facility_rows, entrance_rows, manifest)
+    vehicle_specs = build_vehicle_specs(json.loads(VEHICLE_SPECS_PATH.read_text(encoding="utf-8")))
 
     outputs = {
         SEED_DIR / "01_data_sources.sql": emit.render_seed_sql(
@@ -73,7 +78,14 @@ def main():
             source_header(manifest, "vehicle_entrances"),
             "on conflict (id) do nothing",
         ),
+        SEED_DIR / "04_vehicle_model_specs.sql": emit.render_seed_sql(
+            "vehicle_model_specs",
+            vehicle_specs,
+            [GENERATED_NOTICE, "출처: 현대자동차 공식 카탈로그, 원본 목록은 data/curated/vehicle_model_specs.json"],
+            emit.upsert_clause("vehicle_model_specs"),
+        ),
         SNAPSHOT_PATH: emit.render_snapshot_json(dataset, datasets["vehicle_entrances"]["downloaded_at"]),
+        SPEC_CATALOG_PATH: emit.render_vehicle_spec_catalog_json(vehicle_specs),
         REPORT_PATH: json.dumps(report, ensure_ascii=False, indent=2) + "\n",
     }
 

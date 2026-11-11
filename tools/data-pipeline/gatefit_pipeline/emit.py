@@ -20,6 +20,10 @@ _TABLE_COLUMNS = {
         "data_source_id", "trust_level", "verified_at", "route_target_type",
         "status", "source_record_id", "updated_at",
     ),
+    "vehicle_model_specs": (
+        "id", "manufacturer", "model_name", "model_year", "trim_name",
+        "height_mm", "width_mm", "length_mm", "source_name", "source_url", "source_verified_at",
+    ),
 }
 
 _TEXT_ARRAY_COLUMNS = {"aliases", "permitted_vehicle_types"}
@@ -78,6 +82,14 @@ def render_snapshot_json(dataset, generated_at):
         "entrances": [_without_nulls(row) for row in dataset["entrances"]],
     }
     return json.dumps(snapshot, ensure_ascii=False, separators=(",", ":"))
+
+
+def render_vehicle_spec_catalog_json(rows):
+    catalog = {
+        "schema_version": SNAPSHOT_SCHEMA_VERSION,
+        "specs": [_without_nulls(row) for row in rows],
+    }
+    return json.dumps(catalog, ensure_ascii=False, indent=2) + "\n"
 
 
 def _without_nulls(row):

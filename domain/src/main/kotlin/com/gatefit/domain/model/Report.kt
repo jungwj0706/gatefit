@@ -13,7 +13,8 @@ enum class ReportType {
 enum class ReportStatus { PENDING, REVIEWING, APPROVED, REJECTED }
 
 // 서버 전송 상태, 서버 검토 상태(ReportStatus)와 별개
-enum class ReportDelivery { QUEUED, SENT, FAILED }
+// FAILED는 재전송 대상, REJECTED는 서버가 접수를 거부해 재전송하지 않는 상태
+enum class ReportDelivery { QUEUED, SENT, FAILED, REJECTED }
 
 data class EntranceReportDraft(
     val entranceId: String,
