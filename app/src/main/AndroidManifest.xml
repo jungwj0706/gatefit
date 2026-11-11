@@ -19,6 +19,9 @@
     <!-- Pleos Vehicle SDK CarInfo 조회 권한 -->
     <uses-permission android:name="pleos.car.permission.CAR_INFO" />
 
+    <!-- Pleos NaviHelper 목적지 설정·취소 권한, 정보 조회 API는 사용하지 않아 NAVI_ROUTE는 선언하지 않음 -->
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE_SEARCH" />
+
     <application
         android:name=".app.GatefitApplication"
         android:allowBackup="false"
