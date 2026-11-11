@@ -191,3 +191,35 @@ fun NumberField(
         shape = MaterialTheme.shapes.medium,
     )
 }
+
+@Composable
+fun GatefitTextField(
+    label: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    placeholder: String? = null,
+    leadingIcon: ImageVector? = null,
+    singleLine: Boolean = true,
+    enabled: Boolean = true,
+    error: String? = null,
+    supportingText: String? = null,
+    imeAction: ImeAction = ImeAction.Done,
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier.heightIn(min = GatefitTheme.dimens.touchTarget),
+        enabled = enabled,
+        singleLine = singleLine,
+        minLines = if (singleLine) 1 else 3,
+        isError = error != null,
+        label = { Text(label, style = MaterialTheme.typography.labelMedium) },
+        placeholder = placeholder?.let { { Text(it, style = MaterialTheme.typography.bodyLarge) } },
+        leadingIcon = leadingIcon?.let { { Icon(it, contentDescription = null, modifier = Modifier.size(32.dp)) } },
+        supportingText = (error ?: supportingText)?.let { { Text(it, style = MaterialTheme.typography.labelSmall) } },
+        textStyle = MaterialTheme.typography.bodyLarge,
+        keyboardOptions = KeyboardOptions(imeAction = imeAction),
+        shape = MaterialTheme.shapes.medium,
+    )
+}

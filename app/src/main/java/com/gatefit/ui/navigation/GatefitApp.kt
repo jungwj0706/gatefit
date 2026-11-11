@@ -12,13 +12,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.gatefit.app.AppContainer
 import com.gatefit.ui.components.LocalDrivingRestrictions
 import com.gatefit.ui.feature.splash.SplashDestination
 import com.gatefit.ui.feature.splash.SplashScreen
+import com.gatefit.ui.feature.vehicle.VehicleSetupScreen
 
 val LocalAppContainer = staticCompositionLocalOf<AppContainer> { error("AppContainer not provided") }
 
@@ -53,6 +56,18 @@ private fun GatefitNavHost(navController: NavHostController) {
         composable(Routes.SPLASH) {
             SplashScreen(onFinished = { destination -> navController.leaveSplash(destination) })
         }
+        composable(
+            route = Routes.VEHICLE_SETUP,
+            arguments = listOf(navArgument(Routes.ARG_ONBOARDING) { type = NavType.BoolType; defaultValue = false }),
+        ) { entry ->
+            val onboarding = entry.arguments?.getBoolean(Routes.ARG_ONBOARDING) ?: false
+            VehicleSetupScreen(
+                onboarding = onboarding,
+                onSaved = { if (onboarding) navController.enterHome() else navController.popBackStack() },
+                onBack = { navController.popBackStack() },
+                onSkip = { navController.enterHome() },
+            )
+        }
     }
 }
 
@@ -64,4 +79,9 @@ private fun NavHostController.leaveSplash(destination: SplashDestination) {
     // 화면이 아직 등록되지 않은 경로로는 이동하지 않음
     if (graph.none { it.route == pattern }) return
     navigate(route) { popUpTo(Routes.SPLASH) { inclusive = true } }
+}
+
+private fun NavHostController.enterHome() {
+    if (graph.none { it.route == Routes.HOME }) return
+    navigate(Routes.HOME) { popUpTo(graph.id) { inclusive = true } }
 }
