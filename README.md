@@ -4,9 +4,11 @@
 
 GATEFIT은 내 차량의 제원과 시설의 출입구별 제한을 비교합니다. 사용자가 선택한 출입구의 좌표를 Pleos 기본 내비게이션에 전달해 시설의 대표 위치와 실제 진입 위치가 다른 경우를 돕습니다.
 
+# [APK 파일 다운로드 링크 (클릭)](https://github.com/jungwj0706/gatefit/releases/tag/v1.0.0)
+
 ## APK 실행 방법
 
-제출 메일에 첨부된 `GATEFIT-1.0.0-release.zip`을 풀면 서명된 릴리스 APK가 있습니다. Pleos Connect 에뮬레이터를 실행하고 압축을 푼 폴더에서 설치하세요.
+다운로드한 `GATEFIT-1.0.0-release.apk`을 실행해, Pleos Connect 에뮬레이터를 실행하고 압축을 푼 폴더에서 설치하세요.
 
 ```bash
 adb install GATEFIT-1.0.0-release.apk
