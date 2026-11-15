@@ -4,17 +4,24 @@
 
 GATEFIT은 내 차량의 제원과 시설의 출입구별 제한을 비교합니다. 사용자가 선택한 출입구의 좌표를 Pleos 기본 내비게이션에 전달해 시설의 대표 위치와 실제 진입 위치가 다른 경우를 돕습니다.
 
-# [APK 파일 다운로드 링크 (클릭)](https://github.com/jungwj0706/gatefit/releases/tag/v1.0.0)
-
 ## APK 실행 방법
 
-다운로드한 `GATEFIT-1.0.0-release.apk`을 실행해, Pleos Connect 에뮬레이터를 실행하고 압축을 푼 폴더에서 설치하세요.
+1. [서명된 제출용 APK](apk/%EC%A0%95%EC%9A%B0%EC%A7%84_GATEFIT_release.apk)를 열고 GitHub의 **Download raw file** 버튼으로 내려받으세요.
+2. Pleos Connect 에뮬레이터를 실행한 뒤 APK를 내려받은 폴더에서 아래 명령을 실행하세요. `adb`는 Android SDK Platform-Tools에 포함되어 있습니다.
 
-```bash
-adb install GATEFIT-1.0.0-release.apk
-```
+   ```bash
+   adb install "./정우진_GATEFIT_release.apk"
+   ```
 
-앱 목록에서 **GATEFIT**을 실행합니다. APK는 Android Automotive OS용입니다. 같은 패키지의 디버그 APK가 다른 키로 서명되어 설치된 환경에서는 새 테스트 환경을 사용하세요.
+3. 앱 목록에서 **GATEFIT**을 실행하세요.
+
+APK의 대상 플랫폼은 Android Automotive OS입니다. 같은 패키지의 디버그 APK가 다른 키로 서명되어 설치된 환경에서는 새 테스트 환경을 사용하세요.
+
+## 테스트 및 시연 환경
+
+- 시연 영상은 일반 Android 15 에뮬레이터 36.5.10.0에서 1600×900 해상도로 녹화했습니다. 제출용 APK에서 차량 제원 등록, 시설 검색, 출입구 분석과 목적지 좌표 표시를 확인했습니다.
+- Pleos Connect 에뮬레이터 버전과 화면 규격은 사용 기록이 없습니다. Pleos 환경의 Vehicle SDK 연결, NaviHelper 경로 탐색 및 콜백, Car UX 제한 동작은 미검증입니다.
+- 내장 데이터로 시설 검색과 출입구 분석을 이용할 수 있으며, 별도 서버 설정이 필요하지 않습니다.
 
 ## 확인할 수 있는 흐름
 
@@ -44,6 +51,6 @@ Android Studio의 JDK와 Android SDK를 설정합니다. 명령줄에서 실행�
 ./gradlew :app:assembleRelease
 ```
 
-`assembleRelease`가 생성하는 기본 APK는 서명되지 않습니다. 제출 APK는 별도 키로 서명했습니다. 자동 테스트는 도메인 판정, 데이터 계층, SDK 래퍼와 주요 ViewModel을 검증합니다. Pleos에서의 Vehicle SDK 연결, 경로 요청 콜백, 주행 제한 동작은 별도의 에뮬레이터 검증이 필요합니다.
+`assembleRelease`가 생성하는 기본 APK는 서명되지 않습니다. 제출 APK는 별도 키로 서명했습니다. 자동 테스트는 도메인 판정, 데이터 계층, SDK 래퍼와 주요 ViewModel을 검증합니다.
 
 별도 서버 구성은 [Supabase 설정 안내](supabase/README.md)를 참고하세요.
